@@ -112,7 +112,7 @@ class language_model_openai implements language_model_interface {
 		return $response;
 	}
 
-	public function request(string $model, $content) {
+	public function request(string $model, array $content) {
 
 		// Set default empty string
 		$response = '';

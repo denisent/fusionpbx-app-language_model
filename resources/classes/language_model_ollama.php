@@ -112,7 +112,7 @@ class language_model_ollama implements language_model_interface {
 		return $response;
 	}
 
-	public function request(string $model, $content) {
+	public function request(string $model, array $content) {
 
 		// Define the global variables
 		global $settings;
