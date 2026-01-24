@@ -29,6 +29,89 @@ class language_model_openai implements language_model_interface {
 		return strlen($data); // Return the length of the data processed
 	}
 
+	public function get_models() : array {
+
+		// Set the default endpoint
+		//if (empty($endpoint)) {
+		//	$endpoint = '/api/generate';
+		//}
+
+		// Set default empty string
+		$response = '';
+
+		// Set the url
+		if (empty($this->api_url)) {
+			$this->api_url = 'http://127.0.0.1:11434';
+		}
+
+		// Set the api url endpoint
+		$api_url = $this->api_url . '/api/tags';
+
+		// Initialize curl session
+		$ch = curl_init();
+
+		// Set curl options
+		curl_setopt($ch, CURLOPT_URL, $api_url);
+		if (!empty($json_data)) {
+			curl_setopt($ch, CURLOPT_POST, true);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $json_data);
+		}
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+			"Content-Type: application/json"
+		));
+
+		// Set timeouts
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+
+		// Enable verbose output for debugging
+		curl_setopt($ch, CURLOPT_VERBOSE, true);
+		//$verbose_Log = fopen("curl_verbose_log.txt", "w");
+		//curl_setopt($ch, CURLOPT_STDERR, $verbose_Log);
+
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+		// Execute the request Note: The response will be empty if stream is true
+		$response = curl_exec($ch);
+
+		// Check for errors
+		if (curl_errno($ch)) {
+			$response = [];
+			$response['error']['error_message'] = curl_error($ch)."\n";
+			$response['error']['error_code'] = curl_errno($ch)."\n";
+			return $response;
+		}
+
+		// Output debugging info
+		//echo "Debug Info:\n";
+		//print_r($debug_info);
+
+		// Output raw response
+		//echo "\nRaw Response:\n" . $response . "\n";
+		//exit;
+
+		// Decode and display JSON response if valid
+		if (json_last_error() === JSON_ERROR_NONE) {
+				$decoded_response = json_decode($response, true);
+				if (!empty($decoded_response['models'])) {
+					$response = $decoded_response['models'];
+				}
+		}
+
+		// Check for JSON error
+		if (json_last_error() !== JSON_ERROR_NONE) {
+			$response['error'] = "JSON Decode Error: " . json_last_error_msg() . "\n";
+		}
+
+		// Close curl session
+		unset($ch);
+
+		// Close verbose log file
+		//fclose($verbose_Log);
+
+		return $response;
+	}
+
 	public function request(string $model, $content) {
 
 		// Set default empty string

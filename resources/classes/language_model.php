@@ -21,7 +21,7 @@ class language_model {
 	/**
 	 * called when the object is created
 	 */
-	public function __construct($stream) {
+	public function __construct($stream = false) {
 		//prepare to use the settings object
 		global $settings;
 
@@ -37,7 +37,7 @@ class language_model {
 	 * get_models
 	 * get the list of available models
 	 */
-	public function get_models() {
+	public function get_models() : array {
 		if (!empty($this->engine)) {
 			//set the class interface to use the _template suffix
 			$class_name = 'language_model_'.$this->engine;
@@ -50,11 +50,8 @@ class language_model {
 				$response = $object->get_models();
 				return $response;
 			}
-			else {
-				return '';
-			}
 		}
-
+		return [];
 	}
 
 	/**
@@ -76,10 +73,8 @@ class language_model {
 				$response = $object->request($model, $content);
 				return $response;
 			}
-			else {
-				return '';
-			}
 		}
+		return '';
 	}
 
 }

@@ -29,7 +29,7 @@ class language_model_ollama implements language_model_interface {
 		return strlen($data); // Return the length of the data processed
 	}
 
-	public function get_models() {
+	public function get_models() : array {
 
 		// Set the default endpoint
 		//if (empty($endpoint)) {
@@ -76,9 +76,10 @@ class language_model_ollama implements language_model_interface {
 
 		// Check for errors
 		if (curl_errno($ch)) {
-			echo "error ". curl_error($ch)."\n";
-			echo "error code ".curl_errno($ch)."\n";
-			return false;
+			$response = [];
+			$response['error']['error_message'] = curl_error($ch)."\n";
+			$response['error']['error_code'] = curl_errno($ch)."\n";
+			return $response;
 		}
 
 		// Output debugging info
@@ -99,7 +100,7 @@ class language_model_ollama implements language_model_interface {
 
 		// Check for JSON error
 		if (json_last_error() !== JSON_ERROR_NONE) {
-			$response = "JSON Decode Error: " . json_last_error_msg() . "\n";
+			$response['error'] = "JSON Decode Error: " . json_last_error_msg() . "\n";
 		}
 
 		// Close curl session
