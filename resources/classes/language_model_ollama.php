@@ -200,7 +200,7 @@ class language_model_ollama implements language_model_interface {
 		));
 
 		// Set timeouts
-		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3);
 		curl_setopt($ch, CURLOPT_TIMEOUT, 300);
 
 		// Enable verbose output for debugging
