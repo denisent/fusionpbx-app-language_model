@@ -240,6 +240,11 @@ class language_model_openai implements language_model_interface {
 			if (json_last_error() !== JSON_ERROR_NONE) {
 				$response = "JSON Decode Error: " . json_last_error_msg() . "\n";
 			}
+
+			// Return response message content only
+			if (!empty($decoded_response['choices'][0]['message']['content'])) {
+				return $decoded_response['choices'][0]['message']['content'];
+			}
 		}
 
 		// Close curl session
