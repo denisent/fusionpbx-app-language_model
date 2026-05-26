@@ -1,0 +1,56 @@
+<?php
+
+$text['title-language_model']['en-us'] = "Language Model";
+$text['title-language_model']['en-gb'] = "Language Model";
+$text['title-language_model']['ar-eg'] = "نموذج اللغة";
+$text['title-language_model']['de-at'] = "Sprachmodell";
+$text['title-language_model']['de-ch'] = "Sprachmodell";
+$text['title-language_model']['de-de'] = "Sprachmodell";
+$text['title-language_model']['el-gr'] = "Γλωσσικό Μοντέλο";
+$text['title-language_model']['es-cl'] = "Modelo de Lenguaje";
+$text['title-language_model']['es-mx'] = "Modelo de Lenguaje";
+$text['title-language_model']['fr-ca'] = "Modèle de Langue";
+$text['title-language_model']['fr-fr'] = "Modèle de Langue";
+$text['title-language_model']['he-il'] = "מודל שפה";
+$text['title-language_model']['it-it'] = "Modello Linguistico";
+$text['title-language_model']['ka-ge'] = "ენის მოდელი";
+$text['title-language_model']['nl-nl'] = "Taalmodel";
+$text['title-language_model']['pl-pl'] = "Model Językowy";
+$text['title-language_model']['pt-br'] = "Modelo de Linguagem";
+$text['title-language_model']['pt-pt'] = "Modelo de Linguagem";
+$text['title-language_model']['ro-ro'] = "Model de Limbaj";
+$text['title-language_model']['ru-ru'] = "Модель Языка";
+$text['title-language_model']['sv-se'] = "Språkmodell";
+$text['title-language_model']['uk-ua'] = "Мова Модель";
+$text['title-language_model']['tr-tr'] = "Dil Modeli";
+$text['title-language_model']['zh-cn'] = "语言模型";
+$text['title-language_model']['ja-jp'] = "言語モデル";
+$text['title-language_model']['ko-kr'] = "언어 모델";
+
+$text['label-language_model_message']['en-us'] = "How may I assist you?";
+$text['label-language_model_message']['en-gb'] = "How may I assist you?";
+$text['label-language_model_message']['ar-eg'] = "كيف يمكنني مساعدتك؟";
+$text['label-language_model_message']['de-at'] = "Wie kann ich Ihnen helfen?";
+$text['label-language_model_message']['de-ch'] = "Wie kann ich Ihnen helfen?";
+$text['label-language_model_message']['de-de'] = "Wie kann ich Ihnen helfen?";
+$text['label-language_model_message']['el-gr'] = "Πώς μπορώ να σε βοηθήσω;";
+$text['label-language_model_message']['es-cl'] = "¿Cómo puedo ayudarte?";
+$text['label-language_model_message']['es-mx'] = "¿Cómo puedo ayudarte?";
+$text['label-language_model_message']['fr-ca'] = "Comment puis-je vous aider ?";
+$text['label-language_model_message']['fr-fr'] = "Comment puis-je vous aider ?";
+$text['label-language_model_message']['he-il'] = "كيف يمكنني לעזור לך?";
+$text['label-language_model_message']['it-it'] = "Come posso aiutarti?";
+$text['label-language_model_message']['ka-ge'] = "როგორ შემогу დახმარება?";
+$text['label-language_model_message']['nl-nl'] = "Hoe kan ik u helpen?";
+$text['label-language_model_message']['pl-pl'] = "Jak mogę Ci pomóc?";
+$text['label-language_model_message']['pt-br'] = "Como posso ajudar você?";
+$text['label-language_model_message']['pt-pt'] = "Como posso ajudá-lo?";
+$text['label-language_model_message']['ro-ro'] = "Cum vă pot ajuta?";
+$text['label-language_model_message']['ru-ru'] = "Как я могу помочь вам?";
+$text['label-language_model_message']['sv-se'] = "Hur kan jag hjälpa dig?";
+$text['label-language_model_message']['uk-ua'] = "Як я можу допомогти?";
+$text['label-language_model_message']['tr-tr'] = "Sizi nasıl yardımcı olabilirim?";
+$text['label-language_model_message']['zh-cn'] = "我如何能帮助您？";
+$text['label-language_model_message']['ja-jp'] = "どのようにお手伝いできますか?";
+$text['label-language_model_message']['ko-kr'] = "어떻게 도와드릴까요?";
+
