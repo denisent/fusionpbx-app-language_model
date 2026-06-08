@@ -41,11 +41,11 @@ class language_model_openai implements language_model_interface {
 
 		// Set the url
 		if (empty($this->api_url)) {
-			$this->api_url = 'http://127.0.0.1:11434';
+			$this->api_url = 'https://api.openai.com';
 		}
 
 		// Set the api url endpoint
-		$api_url = $this->api_url . '/api/tags';
+		$api_url = $this->api_url . '/v1/models';
 
 		// Initialize curl session
 		$ch = curl_init();
@@ -56,8 +56,11 @@ class language_model_openai implements language_model_interface {
 			curl_setopt($ch, CURLOPT_POST, true);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $json_data);
 		}
+
+		// set the request headers
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-			"Content-Type: application/json"
+			'Authorization: Bearer '.$this->api_key,
+			'Content-Type: application/json'
 		));
 
 		// Set timeouts
@@ -92,10 +95,18 @@ class language_model_openai implements language_model_interface {
 
 		// Decode and display JSON response if valid
 		if (json_last_error() === JSON_ERROR_NONE) {
-				$decoded_response = json_decode($response, true);
-				if (!empty($decoded_response['models'])) {
-					$response = $decoded_response['models'];
-				}
+			$decoded_response = json_decode($response, true);
+			if (!empty($decoded_response['models'])) {
+				$response = $decoded_response['models'];
+			}
+		}
+
+		// Build the array of the list of models
+		if (!empty($decoded_response['data'])) {
+			$response = [];
+			foreach($decoded_response['data'] as $row) {
+				$response[]['model'] = $row['id'];
+			}
 		}
 
 		// Check for JSON error
@@ -113,6 +124,24 @@ class language_model_openai implements language_model_interface {
 	}
 
 	public function request(string $model, array $content) {
+
+		// Define the global variables
+		global $settings;
+
+		// Return if content is empty
+		if (empty($content)) {
+			return '';
+		}
+
+		// Set the default model
+		if (empty($model)) {
+			$this->api_model = $settings->get('language_model', 'api_model', 'gpt-5.4-mini');
+		}
+
+		// Use the selected model
+		if (!empty($model)) {
+			$this->api_model = $model;
+		}
 
 		// Set default empty string
 		$response = '';
