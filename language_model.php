@@ -54,7 +54,7 @@ $theme_button_icon_reset = $settings->get('theme', 'button_icon_reset');
 $theme_button_icon_upload = 'fa-solid fa-paperclip';
 
 // Get the form values
-$request_text = $_REQUEST['request_text'];
+$request_text = $_REQUEST['request_text'] ?? '';
 
 // Get available models
 $stream = false;
@@ -67,7 +67,7 @@ $object = new token;
 $token = $object->create($_SERVER['PHP_SELF']);
 
 // Include the header
-$document['title'] = $text['title-bridges'];
+$document['title'] = $text['title-language_model'];
 require_once "resources/header.php";
 
 // Show the content
@@ -116,7 +116,7 @@ echo "				</td>\n";
 echo "			</tr>\n";
 echo "			<tr>\n";
 echo "				<td class=\"vtable\">\n";
-echo "					<textarea name='request_text' id='request_text' class='formfld' rows='8' style='width: 100%; height: 100%;' placeholder='".escape($text['label-assistant_message'])."' >".htmlspecialchars($request_text, ENT_QUOTES, 'UTF-8')."</textarea>\n";
+echo "					<textarea name='request_text' id='request_text' class='formfld' rows='8' style='width: 100%; height: 100%;' placeholder='".escape($text['label-assistant_message'] ?? '')."' >".htmlspecialchars($request_text, ENT_QUOTES, 'UTF-8')."</textarea>\n";
 echo "				</td>\n";
 echo "			</tr>\n";
 echo "		</table>\n";
